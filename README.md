@@ -64,7 +64,7 @@ Los objetivos de aprendizaje a reforzar son:
 
 ## Diagrama de Flujo
 
-![Diagrama de Flujo mdLinks](https://user-images.githubusercontent.com/110297/42118443-b7a5f1f0-7bc8-11e8-96ad-9cc5593715a6.jpg)
+![Diagrama de Flujo mdLinks](https://github.com/montezakarim/LIM010-fe-md-links/blob/master/libreria/md/mdLinks.jpg?raw=true)
 
 
 Tópicos: [Node.js](https://nodejs.org/en/),
