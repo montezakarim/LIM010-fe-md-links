@@ -1,0 +1,35 @@
+{
+  "name": "lim010-fe-md-links",
+  "version": "1.0.0",
+  "description": "markdown-links ",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "pretest": "npm run eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/montezakarim/LIM010-fe-md-links.git"
+  },
+  "author": "Karim Monteza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/montezakarim/LIM010-fe-md-links/issues"
+  },
+  "homepage": "https://github.com/montezakarim/LIM010-fe-md-links#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "babel-jest": "^24.8.0",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-react": "^7.14.3",
+    "jest": "^24.9.0"
+  }
+}
