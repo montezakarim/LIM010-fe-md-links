@@ -33,13 +33,39 @@ sistema archivos, con el entorno (_proceso_, _env_, _stdin/stdout/stderr_), ...
 
 ## Objetivos
 
-El objetivo práctico de este proyecto es que aprendas cómo crear tu propia
-**librería** (o biblioteca - _library_) en JavaScript.
+El objetivo de este proyecto es aprender a crear nuestra propia **librería** (o biblioteca - _library_) en JavaScript.
 
-Diseñar tu propia librería es una experiencia fundamental para cualquier
-desarrollador porque que te obliga a pensar en la interfaz (API) de tus
-_módulos_ y cómo será usado por otros developers. Debes tener especial
-consideración en peculiaridades del lenguaje, convenciones y buenas prácticas.
+## Objetivos de aprendizaje
+
+Los objetivos de aprendizaje a reforzar son: 
+### Javascript
+- Uso de callbacks
+- Consumo de Promesas
+
+### Node
+- Sistema de archivos
+- package.json
+- crear modules
+- Instalar y usar modules
+- npm scripts
+- CLI (Command Line Interface - Interfaz de Línea de Comando)
+
+### Testing
+- Testeo de tus funciones
+- Testeo asíncrono
+- Uso de librerias de Mock
+- Mocks manuales
+- Testeo para multiples Sistemas Operativos
+
+### Buenas prácticas de desarrollo
+- [ ] Modularización
+- [ ] Nomenclatura / Semántica
+- [ ] Linting
+
+## Diagrama de Flujo
+
+![Diagrama de Flujo mdLinks](https://user-images.githubusercontent.com/110297/42118443-b7a5f1f0-7bc8-11e8-96ad-9cc5593715a6.jpg)
+
 
 Tópicos: [Node.js](https://nodejs.org/en/),
 [módulos (CommonJS)](https://nodejs.org/docs/latest-v0.10.x/api/modules.html),
@@ -241,40 +267,6 @@ Módulo instalable via `npm install <github-user>/md-links`. Este módulo debe
 incluir tanto un ejecutable como una interfaz que podamos importar con `require`
 para usarlo programáticamente.
 
-## Objetivos de aprendizaje
-
-Recuerda colocar en esta seccion los objetivos de aprendizaje que quedaron 
-pendientes de tu proyecto anterior.
-
-### Javascript
-- [ ] Uso de callbacks
-- [ ] Consumo de Promesas
-- [ ] Creacion de Promesas
-- [ ] Modulos de Js
-- [ ] Recursión
-
-### Node
-- [ ] Sistema de archivos
-- [ ] package.json
-- [ ] crear modules
-- [ ] Instalar y usar modules
-- [ ] npm scripts
-- [ ] CLI (Command Line Interface - Interfaz de Línea de Comando)
-
-### Testing
-- [ ] Testeo de tus funciones
-- [ ] Testeo asíncrono
-- [ ] Uso de librerias de Mock
-- [ ] Mocks manuales
-- [ ] Testeo para multiples Sistemas Operativos
-
-### Git y Github
-- [ ] Organización en Github
-
-### Buenas prácticas de desarrollo
-- [ ] Modularización
-- [ ] Nomenclatura / Semántica
-- [ ] Linting
 
 ***
 
