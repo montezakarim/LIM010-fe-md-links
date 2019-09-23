@@ -1,7 +1,8 @@
 module.exports = {
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
   "extends": [
     "airbnb-base"
@@ -15,7 +16,8 @@ module.exports = {
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "rules": {    'linebreak-style': 0,
+  "rules": {    
+    'linebreak-style': 0,
     'prefer-destructuring': 0,
     'import/extensions': 0,
     'import/prefer-default-export': 0,

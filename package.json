@@ -2,14 +2,14 @@
   "name": "lim010-fe-md-links",
   "version": "1.0.0",
   "description": "markdown-links ",
-  "main": "index.js",
+  "main": "src/index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "pretest": "npm run eslint"
+    "lint": "eslint --ext .js src/ test/",
+    "pretest": "npm run lint",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -21,15 +21,20 @@
     "url": "https://github.com/montezakarim/LIM010-fe-md-links/issues"
   },
   "homepage": "https://github.com/montezakarim/LIM010-fe-md-links#readme",
+  "dependencies": {
+    "filehound": "^1.17.3",
+    "marked": "^0.7.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "node-fetch": "^2.6.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0",
-    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
     "babel-jest": "^24.8.0",
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-jest": "^22.1.2",
     "jest": "^24.9.0"
   }
 }
