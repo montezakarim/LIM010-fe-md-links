@@ -1,8 +1,8 @@
 import {
   existsPath, validateConvertPath, validateFilePath, validateDirectoryPath,
-  searchPathFiles, isFileMd, readFileMd, searchLinks, linksValidate,
-} from '../src/index.js';
-import { mdLinks } from '../src/mdLinks.js';
+  searchPathFiles, isFileMd, readFileMd, searchLinks, linksValidate, mdLinks,
+  validateOptions, statsOptions, statsValidateOptions,
+} from '../src/mdLinks.js';
 
 const pathNode = require('path');
 
@@ -10,7 +10,57 @@ const relativePath = 'test-folder\\';
 const absolutePath = '\\test-folder\\aaaa.md';
 const noPath = 'hola';
 const directoryPath = '\\test-folder\\';
-
+const arrayLinks = [{
+  href: 'https://es.wikipedia.org/wiki/Markdown',
+  text: 'Markdown',
+  file: pathNode.join(process.cwd(), '\\test-folder\\aaaa.md'),
+},
+{
+  href: 'https://nodejs.org/api/x',
+  text: 'node.js',
+  file: pathNode.join(process.cwd(), '\\test-folder\\aaaa.md'),
+},
+{
+  href: 'https://es.wikipedia.org/wiki/Markdown',
+  text: 'Markdown',
+  file: pathNode.join(process.cwd(), '\\test-folder\\bbbb.md'),
+},
+{
+  href: 'https://es.wikipedia.org/wiki/Markdown',
+  text: 'Markdown',
+  file: pathNode.join(process.cwd(), '\\test-folder\\cccc.md'),
+},
+];
+const arrayLinksValidate = [
+  {
+    href: 'https://es.wikipedia.org/wiki/Markdown',
+    text: 'Markdown',
+    file: pathNode.join(process.cwd(), '\\test-folder\\aaaa.md'),
+    status: 200,
+    statusText: 'OK',
+  },
+  {
+    href: 'https://nodejs.org/api/x',
+    text: 'node.js',
+    file: pathNode.join(process.cwd(), '\\test-folder\\aaaa.md'),
+    status: 404,
+    statusText: 'FAIL',
+  },
+  {
+    href: 'https://es.wikipedia.org/wiki/Markdown',
+    text: 'Markdown',
+    file: pathNode.join(process.cwd(), '\\test-folder\\bbbb.md'),
+    status: 200,
+    statusText: 'OK',
+  },
+  {
+    href: 'https://es.wikipedia.org/wiki/Markdown',
+    text: 'Markdown',
+    file: pathNode.join(process.cwd(), '\\test-folder\\cccc.md'),
+    status: 200,
+    statusText: 'OK',
+  },
+];
 
 describe('existsPath', () => {
   it('It should be a function', () => {
@@ -108,28 +158,7 @@ describe('searchLinks', () => {
   });
 
   it('It Should return an array of links from a file', () => {
-    expect(searchLinks(relativePath)).toEqual([
-      {
-        href: 'https://es.wikipedia.org/wiki/Markdown',
-        text: 'Markdown',
-        file: pathNode.join(process.cwd(), '\\test-folder\\aaaa.md'),
-      },
-      {
-        href: 'https://nodejs.org/api/x',
-        text: 'node.js',
-        file: pathNode.join(process.cwd(), '\\test-folder\\aaaa.md'),
-      },
-      {
-        href: 'https://es.wikipedia.org/wiki/Markdown',
-        text: 'Markdown',
-        file: pathNode.join(process.cwd(), '\\test-folder\\bbbb.md'),
-      },
-      {
-        href: 'https://es.wikipedia.org/wiki/Markdown',
-        text: 'Markdown',
-        file: pathNode.join(process.cwd(), '\\test-folder\\cccc.md'),
-      },
-    ]);
+    expect(searchLinks(relativePath)).toStrictEqual(arrayLinks);
   });
 });
 
@@ -140,36 +169,7 @@ describe('linksValidate', () => {
 
   it('It should return a promise', () => linksValidate(relativePath)
     .then((result) => {
-      expect(result).toEqual([
-        {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown',
-          file: pathNode.join(process.cwd(), '\\test-folder\\aaaa.md'),
-          status: 200,
-          statusText: 'OK',
-        },
-        {
-          href: 'https://nodejs.org/api/x',
-          text: 'node.js',
-          file: pathNode.join(process.cwd(), '\\test-folder\\aaaa.md'),
-          status: 404,
-          statusText: 'FAIL',
-        },
-        {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown',
-          file: pathNode.join(process.cwd(), '\\test-folder\\bbbb.md'),
-          status: 200,
-          statusText: 'OK',
-        },
-        {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown',
-          file: pathNode.join(process.cwd(), '\\test-folder\\cccc.md'),
-          status: 200,
-          statusText: 'OK',
-        },
-      ]);
+      expect(result).toStrictEqual(arrayLinksValidate);
     }));
 });
 
@@ -178,74 +178,50 @@ describe('mdLinks', () => {
     expect(typeof mdLinks).toBe('function');
   });
 
-  it('It should return an array of validated links', () => {
-    mdLinks(relativePath, { validate: true }).then((result) => {
-      expect(result).toEqual([
-        {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown',
-          file: pathNode.join(process.cwd(), '\\test-folder\\aaaa.md'),
-          status: 200,
-          statusText: 'OK',
-        },
-        {
-          href: 'https://nodejs.org/api/x',
-          text: 'node.js',
-          file: pathNode.join(process.cwd(), '\\test-folder\\aaaa.md'),
-          status: 404,
-          statusText: 'FAIL',
-        },
-        {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown',
-          file: pathNode.join(process.cwd(), '\\test-folder\\bbbb.md'),
-          status: 200,
-          statusText: 'OK',
-        },
-        {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown',
-          file: pathNode.join(process.cwd(), '\\test-folder\\cccc.md'),
-          status: 200,
-          statusText: 'OK',
-        },
-      ]);
-    });
+  it('It should return an array of validated links', () => mdLinks(relativePath, { validate: true })
+    .then((result) => {
+      expect(result).toStrictEqual(arrayLinksValidate);
+    }));
+
+  it('It should return an array of links', () => mdLinks(relativePath, { validate: false })
+    .then((result) => {
+      expect(result).toStrictEqual(arrayLinks);
+    }));
+});
+
+describe('validateOptions', () => {
+  it('It should be a function', () => {
+    expect(typeof validateOptions).toEqual('function');
+  });
+  it('It should return an array ', () => validateOptions(relativePath)
+    .then((result) => {
+      expect(result).toStrictEqual(
+        ['C:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\aaaa.md https://es.wikipedia.org/wiki/Markdown Markdown 200 OK',
+          'C:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\aaaa.md https://nodejs.org/api/x node.js 404 FAIL',
+          'C:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\bbbb.md https://es.wikipedia.org/wiki/Markdown Markdown 200 OK',
+          'C:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\cccc.md https://es.wikipedia.org/wiki/Markdown Markdown 200 OK',
+        ],
+      );
+    }));
+});
+
+describe('statsOptions', () => {
+  it('It should be a function', () => {
+    expect(typeof statsOptions).toEqual('function');
+  });
+  it('It should return the stats of the link in a string ', () => statsOptions(relativePath)
+    .then((result) => {
+      expect(result).toEqual('total:4 Unique: 2');
+    }));
+});
+
+describe('statsValidateOptions', () => {
+  it('It should be a function', () => {
+    expect(typeof statsValidateOptions).toBe('function');
   });
 
-  it('It should return an array of links', () => {
-    mdLinks(relativePath, { validate: false }).then((result) => {
-      expect(result).toEqual([
-        {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown',
-          file: pathNode.join(process.cwd(), '\\test-folder\\aaaa.md'),
-        },
-        {
-          href: 'https://nodejs.org/api/x',
-          text: 'node.js',
-          file: pathNode.join(process.cwd(), '\\test-folder\\aaaa.md'),
-        },
-        {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown',
-          file: pathNode.join(process.cwd(), '\\test-folder\\bbbb.md'),
-        },
-        {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown',
-          file: pathNode.join(process.cwd(), '\\test-folder\\cccc.md'),
-        },
-      ]);
-    });
-  });
-  it('Debería retornar el link del primer elemento del array de links', () => {
-    mdLinks(relativePath, { validate: 'dir' }).then((result) => {
-      expect(result).toEqual([pathNode.join(process.cwd(), '\\test-folder\\aaaa.md'),
-        pathNode.join(process.cwd(), '\\test-folder\\bbbb.md'),
-        pathNode.join(process.cwd(), '\\test-folder\\cccc.md'),
-        pathNode.join(process.cwd(), '\\test-folder\\test-folder-1\\abab.md'),
-        pathNode.join(process.cwd(), '\\test-folder\\test-folder-1\\bcbc.md')]);
-    });
-  });
+  it('It should return tha stats and validate of the link in a string', () => statsValidateOptions(relativePath)
+    .then((result) => {
+      expect(result).toEqual('Total: 4 Unique: 2 Broken: 1');
+    }));
 });
