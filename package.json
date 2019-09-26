@@ -2,7 +2,7 @@
   "name": "lim010-fe-md-links",
   "version": "1.0.0",
   "description": "markdown-links ",
-  "main": "src/index.js",
+  "main": "src/mdLinks.js",
   "directories": {
     "test": "test"
   },
@@ -25,9 +25,12 @@
   },
   "homepage": "https://github.com/montezakarim/LIM010-fe-md-links#readme",
   "dependencies": {
-    "filehound": "^1.17.3",
-    "marked": "^0.7.0",
     "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "audit": "0.0.6",
+    "colors": "^1.4.0",
+    "filehound": "^1.17.3",
+    "fix": "0.0.6",
+    "marked": "^0.7.0",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {

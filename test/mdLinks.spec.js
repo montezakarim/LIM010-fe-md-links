@@ -2,7 +2,9 @@ import {
   existsPath, validateConvertPath, validateFilePath, validateDirectoryPath,
   searchPathFiles, isFileMd, readFileMd, searchLinks, linksValidate, mdLinks,
   validateOptions, statsOptions, statsValidateOptions,
-} from '../src/mdLinks.js';
+} from '../src/forMdLinks.js';
+
+import { cliMdLinks } from '../src/mdLinks.js';
 
 const pathNode = require('path');
 
@@ -189,7 +191,7 @@ describe('mdLinks', () => {
     }));
   it('It should return a message: path does not exist', () => mdLinks(noPath)
     .catch((err) => {
-      expect(err.message).toEqual('La ruta no es válida');
+      expect(err.message).toEqual('La ruta no existe. Ingrese una ruta válida');
     }));
 });
 
@@ -221,5 +223,42 @@ describe('statsValidateOptions', () => {
   it('It should return tha stats and validate of the link in a string', () => statsValidateOptions(relativePath)
     .then((result) => {
       expect(result).toEqual('Total: 4\nUnique: 2\nBroken: 1');
+    }));
+});
+
+describe('cliMdLinks', () => {
+  it('It should be a function', () => {
+    expect(typeof cliMdLinks).toBe('function');
+  });
+
+  it('Promise: It should return a message: La ruta ingresada no contiene Links ', () => cliMdLinks('test-folder\\test-folder-1\\abab.md')
+    .then((result) => {
+      expect(result).toEqual('La ruta ingresada no contiene Links');
+    }));
+
+  it('Promise: It should return a string of links validate/stats ', () => cliMdLinks(relativePath, { validate: true, stats: true })
+    .then((result) => {
+      expect(typeof result).toBe('string');
+    }));
+
+
+  it('Promise: It should return a string of links validate ', () => cliMdLinks(relativePath, { validate: true })
+    .then((result) => {
+      expect(typeof result).toBe('string');
+    }));
+
+  it('Promise: It should return a string of links ', () => cliMdLinks(relativePath, {})
+    .then((result) => {
+      expect(typeof result).toBe('string');
+    }));
+
+  it('Promise: It should return a string of links stats ', () => cliMdLinks(relativePath, { stats: true })
+    .then((result) => {
+      expect(typeof result).toBe('string');
+    }));
+
+  it('Promise: It should return a message: La ruta no existe. Ingrese una ruta válida', () => cliMdLinks('')
+    .catch((err) => {
+      expect(err.message).toEqual('La ruta no existe. Ingrese una ruta válida');
     }));
 });
