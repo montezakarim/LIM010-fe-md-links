@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 // const [,, ...args] = process.argv;
 // console.log(`Hola Mundo ${args}`);
 
@@ -20,6 +21,8 @@ process.argv.forEach((element) => {
   }
 });
 
+// const cliMdLinks =
+
 mdLinks.mdLinks(path, options).then((links) => {
   if (links.length === 0) {
     console.log('La ruta ingresada no contiene Links');
@@ -30,7 +33,7 @@ mdLinks.mdLinks(path, options).then((links) => {
   } else if (options.stats) {
     mdLinks.statsOptions(path).then((result) => console.log(result));
   } else {
-    const stringLinks = links.map((link) => `${link.file}  ${link.href}  ${link.text.substr(0, 50)}`);
+    const stringLinks = links.map((link) => `${link.file}  ${link.href}  ${link.text}`);
     return console.log(stringLinks.join('\n '));
   }
 }).catch((err) => {

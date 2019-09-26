@@ -187,6 +187,10 @@ describe('mdLinks', () => {
     .then((result) => {
       expect(result).toStrictEqual(arrayLinks);
     }));
+  it('It should return a message: path does not exist', () => mdLinks(noPath)
+    .catch((err) => {
+      expect(err.message).toEqual('La ruta no es válida');
+    }));
 });
 
 describe('validateOptions', () => {
@@ -195,13 +199,7 @@ describe('validateOptions', () => {
   });
   it('It should return an array ', () => validateOptions(relativePath)
     .then((result) => {
-      expect(result).toStrictEqual(
-        ['C:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\aaaa.md https://es.wikipedia.org/wiki/Markdown Markdown 200 OK',
-          'C:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\aaaa.md https://nodejs.org/api/x node.js 404 FAIL',
-          'C:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\bbbb.md https://es.wikipedia.org/wiki/Markdown Markdown 200 OK',
-          'C:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\cccc.md https://es.wikipedia.org/wiki/Markdown Markdown 200 OK',
-        ],
-      );
+      expect(result).toStrictEqual('C:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\aaaa.md https://es.wikipedia.org/wiki/Markdown Markdown 200 OK\nC:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\aaaa.md https://nodejs.org/api/x node.js 404 FAIL\nC:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\bbbb.md https://es.wikipedia.org/wiki/Markdown Markdown 200 OK\nC:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\cccc.md https://es.wikipedia.org/wiki/Markdown Markdown 200 OK');
     }));
 });
 
@@ -211,7 +209,7 @@ describe('statsOptions', () => {
   });
   it('It should return the stats of the link in a string ', () => statsOptions(relativePath)
     .then((result) => {
-      expect(result).toEqual('total:4 Unique: 2');
+      expect(result).toEqual('Total: 4\nUnique: 2');
     }));
 });
 
@@ -222,6 +220,6 @@ describe('statsValidateOptions', () => {
 
   it('It should return tha stats and validate of the link in a string', () => statsValidateOptions(relativePath)
     .then((result) => {
-      expect(result).toEqual('Total: 4 Unique: 2 Broken: 1');
+      expect(result).toEqual('Total: 4\nUnique: 2\nBroken: 1');
     }));
 });

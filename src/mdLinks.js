@@ -111,8 +111,8 @@ const mdLinks = (path, options) => new Promise((resolve, reject) => {
 const validateOptions = (path) => new Promise((resolve) => {
   linksValidate(path)
     .then((arrayLinks) => {
-      const strLinks = arrayLinks.map((link) => `${link.file} ${link.href} ${link.text.substr(0, 50)} ${link.status} ${link.statusText}`);
-      resolve(strLinks.join('\n '));
+      const strLinks = arrayLinks.map((link) => `${link.file} ${link.href} ${link.text} ${link.status} ${link.statusText}`);
+      resolve(strLinks.join('\n'));
     });
 });
 
@@ -120,7 +120,7 @@ const validateOptions = (path) => new Promise((resolve) => {
 const statsOptions = (route) => new Promise((resolve) => {
   const links = searchLinks(route);
   const uniqueLinks = new Set(links.map((element) => element.href));
-  resolve(`${`Total: ${links.length}`}\n${`Unique: ${uniqueLinks.size}`}`);
+  resolve(`Total: ${links.length}\nUnique: ${uniqueLinks.size}`);
 });
 
 // Retorna un string de estadisticas de los links
@@ -129,13 +129,8 @@ const statsValidateOptions = (route) => new Promise((resolve) => {
     .then((links) => {
       const statusLinks = links.map((link) => link.statusText);
       const uniqueLinks = new Set(links.map((link) => link.href));
-      let brokenLinks = statusLinks.toString().match(/FAIL/g);
-      if (brokenLinks != null) {
-        brokenLinks = brokenLinks.length;
-      } else {
-        brokenLinks = 0;
-      }
-      resolve(`${`Total: ${links.length}`}\n${`Unique: ${uniqueLinks.size}`}\n${`Broken: ${brokenLinks}`}`);
+      const brokenLinks = statusLinks.toString().match(/FAIL/g);
+      resolve(`Total: ${links.length}\nUnique: ${uniqueLinks.size}\nBroken: ${brokenLinks.length}`);
     });
 });
 
