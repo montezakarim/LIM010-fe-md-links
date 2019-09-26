@@ -12,8 +12,8 @@ const cliMdLinks = (path, options) => new Promise((resolve, reject) => {
     } else if (options.stats) {
       resolve(mdLinks.statsOptions(path));
     } else {
-      const stringLinks = links.map((link) => `${link.file}  ${link.href}  ${link.text}`);
-      resolve(colors.blue(stringLinks.join('\n ')));
+      const stringLinks = links.map((link) => `${link.file} ${link.href} ${link.text}`);
+      resolve(colors.blue(stringLinks.join('\n')));
     }
   }).catch((err) => {
     reject(err);

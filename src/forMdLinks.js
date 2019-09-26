@@ -112,8 +112,8 @@ const mdLinks = (path, options) => new Promise((resolve, reject) => {
 const validateOptions = (path) => new Promise((resolve) => {
   linksValidate(path)
     .then((arrayLinks) => {
-      const strLinks = arrayLinks.map((link) => `${link.file} ${link.href} ${link.text} ${colors.yellow(`${link.status}`)} ${colors.green(`${link.statusText}`)}`);
-      resolve(strLinks.join('\n'));
+      const strLinks = arrayLinks.map((link) => `${link.file} ${link.href} ${link.statusText} ${link.status} ${link.text}`);
+      resolve(colors.green(strLinks.join('\n')));
     });
 });
 

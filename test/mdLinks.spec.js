@@ -7,6 +7,7 @@ import {
 import { cliMdLinks } from '../src/mdLinks.js';
 
 const pathNode = require('path');
+const colors = require('colors');
 
 const relativePath = 'test-folder\\';
 const absolutePath = '\\test-folder\\aaaa.md';
@@ -191,7 +192,7 @@ describe('mdLinks', () => {
     }));
   it('It should return a message: path does not exist', () => mdLinks(noPath)
     .catch((err) => {
-      expect(err.message).toEqual('La ruta no existe. Ingrese una ruta válida');
+      expect(err.message).toEqual(colors.red('La ruta no existe. Ingrese una ruta válida'));
     }));
 });
 
@@ -201,7 +202,7 @@ describe('validateOptions', () => {
   });
   it('It should return an array ', () => validateOptions(relativePath)
     .then((result) => {
-      expect(result).toStrictEqual('C:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\aaaa.md https://es.wikipedia.org/wiki/Markdown Markdown 200 OK\nC:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\aaaa.md https://nodejs.org/api/x node.js 404 FAIL\nC:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\bbbb.md https://es.wikipedia.org/wiki/Markdown Markdown 200 OK\nC:\\Users\\Labortoria\\Documents\\laboratoria-track-fe\\markdown-links\\LIM010-fe-md-links\\test-folder\\cccc.md https://es.wikipedia.org/wiki/Markdown Markdown 200 OK');
+      expect(result).toStrictEqual(colors.green(`${pathNode.join(process.cwd(), 'test-folder\\aaaa.md')} https://es.wikipedia.org/wiki/Markdown OK 200 Markdown\n${pathNode.join(process.cwd(), 'test-folder\\aaaa.md')} https://nodejs.org/api/x FAIL 404 node.js\n${pathNode.join(process.cwd(), 'test-folder\\bbbb.md')} https://es.wikipedia.org/wiki/Markdown OK 200 Markdown\n${pathNode.join(process.cwd(), 'test-folder\\cccc.md')} https://es.wikipedia.org/wiki/Markdown OK 200 Markdown`));
     }));
 });
 
@@ -211,7 +212,7 @@ describe('statsOptions', () => {
   });
   it('It should return the stats of the link in a string ', () => statsOptions(relativePath)
     .then((result) => {
-      expect(result).toEqual('Total: 4\nUnique: 2');
+      expect(result).toEqual(colors.cyan('Total: 4\nUnique: 2'));
     }));
 });
 
@@ -222,7 +223,7 @@ describe('statsValidateOptions', () => {
 
   it('It should return tha stats and validate of the link in a string', () => statsValidateOptions(relativePath)
     .then((result) => {
-      expect(result).toEqual('Total: 4\nUnique: 2\nBroken: 1');
+      expect(result).toEqual(colors.magenta('Total: 4\nUnique: 2\nBroken: 1'));
     }));
 });
 
@@ -233,32 +234,32 @@ describe('cliMdLinks', () => {
 
   it('Promise: It should return a message: La ruta ingresada no contiene Links ', () => cliMdLinks('test-folder\\test-folder-1\\abab.md')
     .then((result) => {
-      expect(result).toEqual('La ruta ingresada no contiene Links');
+      expect(result).toBe(colors.red('La ruta ingresada no contiene Links'));
     }));
 
   it('Promise: It should return a string of links validate/stats ', () => cliMdLinks(relativePath, { validate: true, stats: true })
     .then((result) => {
-      expect(typeof result).toBe('string');
+      expect(result).toEqual(colors.magenta('Total: 4\nUnique: 2\nBroken: 1'));
     }));
 
 
   it('Promise: It should return a string of links validate ', () => cliMdLinks(relativePath, { validate: true })
     .then((result) => {
-      expect(typeof result).toBe('string');
+      expect(result).toStrictEqual(colors.green(`${pathNode.join(process.cwd(), 'test-folder\\aaaa.md')} https://es.wikipedia.org/wiki/Markdown OK 200 Markdown\n${pathNode.join(process.cwd(), 'test-folder\\aaaa.md')} https://nodejs.org/api/x FAIL 404 node.js\n${pathNode.join(process.cwd(), 'test-folder\\bbbb.md')} https://es.wikipedia.org/wiki/Markdown OK 200 Markdown\n${pathNode.join(process.cwd(), 'test-folder\\cccc.md')} https://es.wikipedia.org/wiki/Markdown OK 200 Markdown`));
     }));
 
   it('Promise: It should return a string of links ', () => cliMdLinks(relativePath, {})
     .then((result) => {
-      expect(typeof result).toBe('string');
+      expect(result).toStrictEqual(colors.blue(`${pathNode.join(process.cwd(), 'test-folder\\aaaa.md')} https://es.wikipedia.org/wiki/Markdown Markdown\n${pathNode.join(process.cwd(), 'test-folder\\aaaa.md')} https://nodejs.org/api/x node.js\n${pathNode.join(process.cwd(), 'test-folder\\bbbb.md')} https://es.wikipedia.org/wiki/Markdown Markdown\n${pathNode.join(process.cwd(), 'test-folder\\cccc.md')} https://es.wikipedia.org/wiki/Markdown Markdown`));
     }));
 
   it('Promise: It should return a string of links stats ', () => cliMdLinks(relativePath, { stats: true })
     .then((result) => {
-      expect(typeof result).toBe('string');
+      expect(result).toEqual(colors.cyan('Total: 4\nUnique: 2'));
     }));
 
   it('Promise: It should return a message: La ruta no existe. Ingrese una ruta válida', () => cliMdLinks('')
     .catch((err) => {
-      expect(err.message).toEqual('La ruta no existe. Ingrese una ruta válida');
+      expect(err.message).toBe(colors.red('La ruta no existe. Ingrese una ruta válida'));
     }));
 });
