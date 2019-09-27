@@ -54,11 +54,11 @@ Los objetivos de aprendizaje a reforzar son:
 
 - La librería está implementada en JavaScript para ser ejecutada con
 Node.js. 
-- El módulo es instalable desde `npm install montezaKarim/md-links`. 
+- El módulo es instalable desde `npm install montezakarim/md-links`. 
 - Los tests unitarios: [Jest](https://jestjs.io/) para tus pruebas unitarias.
 
 ## Instalación
- `npm install montezaKarim/md-links`
+ `npm install montezakarim/md-links`
 
 ## Modo de uso
 
