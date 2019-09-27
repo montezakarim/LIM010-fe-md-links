@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/montezakarim/LIM010-fe-md-links.git"
+    "url": "git+https://github.com/montezakarim/md-links.git"
   },
   "author": "Karim Monteza",
   "license": "MIT",
@@ -21,9 +21,9 @@
     "md-links": "src/cli.js"
   },
   "bugs": {
-    "url": "https://github.com/montezakarim/LIM010-fe-md-links/issues"
+    "url": "https://github.com/montezakarim/md-links/issues"
   },
-  "homepage": "https://github.com/montezakarim/LIM010-fe-md-links#readme",
+  "homepage": "https://github.com/montezakarim/md-links#readme",
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.6.0",
     "audit": "0.0.6",
