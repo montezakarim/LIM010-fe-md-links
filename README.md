@@ -51,14 +51,16 @@ Node.js.
 - Los tests unitarios: [Jest](https://jestjs.io/) para tus pruebas unitarias.
 
 ## Instalación
- `npm install montezakarim/md-links`
+_`npm install montezakarim/md-links`_
+
+## Módulo
+_`const mdLinks = require("md-links");`_
 
 ## Modo de uso
 
 #### `mdLinks(path, options)`
 
 ##### Argumentos
-
 - `path`: Ruta absoluta o relativa al archivo o directorio. Si la ruta pasada es
   relativa, se resuelve como relativa al directorio desde donde se invoca
   node - _current working directory_).
