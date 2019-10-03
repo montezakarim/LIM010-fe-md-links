@@ -4,7 +4,7 @@
 // fileHoudmlibrería - interfaz para buscar en el sistema de archivos
 const pathNode = require('path');
 const fs = require('fs');
-const marked = require('marked'); // permite analizar Markdown en HTML
+const marked = require('marked'); // permite analizar Markdown en HTML Y LEER LOS LINKS
 const fetch = require('node-fetch'); // módulo liviano que trae WINDOWS.FETCH API a Node.js
 // const fileHound = require('filehound');
 const colors = require('colors');

@@ -12,8 +12,7 @@ const options = {
 process.argv.forEach((element) => {
   if (element === '--stats' || element === '--s' || element === 's') {
     options.stats = true;
-  }
-  if (element === '--validate' || element === '--v' || element === 'v') {
+  } else if (element === '--validate' || element === '--v' || element === 'v') {
     options.validate = true;
   }
 });

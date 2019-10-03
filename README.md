@@ -37,14 +37,7 @@ Los objetivos de aprendizaje a reforzar son:
 ### Testing
 - Testeo de tus funciones
 - Testeo asíncrono
-- Uso de librerias de Mock
-- Mocks manuales
 - Testeo para multiples Sistemas Operativos
-
-### Buenas prácticas de desarrollo
-- [ ] Modularización
-- [ ] Nomenclatura / Semántica
-- [ ] Linting
 
 ## Diagrama de Flujo
 
